@@ -1,0 +1,242 @@
+CONTENTS
+========
+1. Input Data
+1.1. Source
+1.2. Description
+1.3. Feature Selection
+2. Data Transformations
+3. Output Variables
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+1.INPUT DATA
+============
+
+1.1 SOURCE:
+----------- 
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
+
+1.2 DESCRIPTION: 
+----------------
+The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six 
+
+activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on 
+
+the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a 
+
+constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly 
+
+partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
+
+The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding 
+
+windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion 
+
+components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed 
+
+to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of 
+
+features was obtained by calculating variables from the time and frequency domain. The details of the features are as follows: 
+
+Note: This section has been copied from the 'ReadMe.txt' available in the source data
+
+1.3 FEATURE SELECTION: 
+----------------------
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These 
+
+time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median 
+
+filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration 
+
+signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass 
+
+Butterworth filter with a corner frequency of 0.3 Hz. 
+
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and 
+
+tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, 
+
+tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
+
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, 
+
+fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
+
+These signals were used to estimate variables of the feature vector for each pattern:  
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+
+tBodyAcc-XYZ
+tGravityAcc-XYZ
+tBodyAccJerk-XYZ
+tBodyGyro-XYZ
+tBodyGyroJerk-XYZ
+tBodyAccMag
+tGravityAccMag
+tBodyAccJerkMag
+tBodyGyroMag
+tBodyGyroJerkMag
+fBodyAcc-XYZ
+fBodyAccJerk-XYZ
+fBodyGyro-XYZ
+fBodyAccMag
+fBodyAccJerkMag
+fBodyGyroMag
+fBodyGyroJerkMag
+
+The set of variables that were estimated from these signals are: 
+
+mean(): Mean value
+std(): Standard deviation
+mad(): Median absolute deviation 
+max(): Largest value in array
+min(): Smallest value in array
+sma(): Signal magnitude area
+energy(): Energy measure. Sum of the squares divided by the number of values. 
+iqr(): Interquartile range 
+entropy(): Signal entropy
+arCoeff(): Autorregresion coefficients with Burg order equal to 4
+correlation(): correlation coefficient between two signals
+maxInds(): index of the frequency component with largest magnitude
+meanFreq(): Weighted average of the frequency components to obtain a mean frequency
+skewness(): skewness of the frequency domain signal 
+kurtosis(): kurtosis of the frequency domain signal 
+bandsEnergy(): Energy of a frequency interval within the 64 bins of the FFT of each window.
+angle(): Angle between to vectors.
+
+Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:
+
+gravityMean
+tBodyAccMean
+tBodyAccJerkMean
+tBodyGyroMean
+tBodyGyroJerkMean
+
+Note: This section has been copied from the 'features_info.txt' file available in the source data
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+2. DATA TRANSFORMATIONS
+=======================
+
+The following transformations were performed on the input data:
+
+- The training and test datasets, including the identifiers for subjects and activities were merged to create one dataset
+- Only the measurements on the mean and standard deviation for each measurement were extracted; these measurements include the mean
+
+(), std(), and meanfreq() variables mentioned above.
+- The activity identifiers were replaced with descriptive activity names
+- The applicable feature names were added to the dataset
+- Finally, the output dataset was created with the average of each activity and each subject
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+3. Output Variables
+===================
+
+As a result of the aforementioned transformations, the output dataset contains 81 variables - the first two variables are the subject 
+
+and activity labels, whereas the remaining 79 variables are the averages by each subject and activity of the extracted measurements 
+
+on the means and standard deviations in the input data. 
+
+The details of the variables containing subject and activity variables are as follows:
+
+	1)
+	Name: "SubjectLabel"
+	Description: unique identifier for each one of the 30 subjects in the experiment
+	Class: Integer
+	Range: [1,30]
+
+	2)
+	Name: "ActivityName"
+	Description: name of the activity associated with a given record in the experiment
+	class: Character
+	Values: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
+
+The list of the variables containing averages by each subject and activity of the extracted measurements, is available below. For 
+
+details on the measurements see section 1.3 Feature Selection.
+
+"tbodyacc-mean()-x"
+"tbodyacc-mean()-y"
+"tbodyacc-mean()-z"
+"tbodyacc-std()-x"
+"tbodyacc-std()-y"
+"tbodyacc-std()-z"
+"tgravityacc-mean()-x"
+"tgravityacc-mean()-y"
+"tgravityacc-mean()-z"
+"tgravityacc-std()-x"
+"tgravityacc-std()-y"
+"tgravityacc-std()-z"
+"tbodyaccjerk-mean()-x"
+"tbodyaccjerk-mean()-y"
+"tbodyaccjerk-mean()-z"
+"tbodyaccjerk-std()-x"
+"tbodyaccjerk-std()-y"
+"tbodyaccjerk-std()-z"
+"tbodygyro-mean()-x"
+"tbodygyro-mean()-y"
+"tbodygyro-mean()-z"
+"tbodygyro-std()-x"
+"tbodygyro-std()-y"
+"tbodygyro-std()-z"
+"tbodygyrojerk-mean()-x"
+"tbodygyrojerk-mean()-y"
+"tbodygyrojerk-mean()-z"
+"tbodygyrojerk-std()-x"
+"tbodygyrojerk-std()-y"
+"tbodygyrojerk-std()-z"
+"tbodyaccmag-mean()"
+"tbodyaccmag-std()"
+"tgravityaccmag-mean()"
+"tgravityaccmag-std()"
+"tbodyaccjerkmag-mean()"
+"tbodyaccjerkmag-std()"
+"tbodygyromag-mean()"
+"tbodygyromag-std()"
+"tbodygyrojerkmag-mean()"
+"tbodygyrojerkmag-std()"
+"fbodyacc-mean()-x"
+"fbodyacc-mean()-y"
+"fbodyacc-mean()-z"
+"fbodyacc-std()-x"
+"fbodyacc-std()-y"
+"fbodyacc-std()-z"
+"fbodyacc-meanfreq()-x"
+"fbodyacc-meanfreq()-y"
+"fbodyacc-meanfreq()-z"
+"fbodyaccjerk-mean()-x"
+"fbodyaccjerk-mean()-y"
+"fbodyaccjerk-mean()-z"
+"fbodyaccjerk-std()-x"
+"fbodyaccjerk-std()-y"
+"fbodyaccjerk-std()-z"
+"fbodyaccjerk-meanfreq()-x"
+"fbodyaccjerk-meanfreq()-y"
+"fbodyaccjerk-meanfreq()-z"
+"fbodygyro-mean()-x"
+"fbodygyro-mean()-y"
+"fbodygyro-mean()-z"
+"fbodygyro-std()-x"
+"fbodygyro-std()-y"
+"fbodygyro-std()-z"
+"fbodygyro-meanfreq()-x"
+"fbodygyro-meanfreq()-y"
+"fbodygyro-meanfreq()-z"
+"fbodyaccmag-mean()"
+"fbodyaccmag-std()"
+"fbodyaccmag-meanfreq()"
+"fbodybodyaccjerkmag-mean()"
+"fbodybodyaccjerkmag-std()"
+"fbodybodyaccjerkmag-meanfreq()"
+"fbodybodygyromag-mean()"
+"fbodybodygyromag-std()"
+"fbodybodygyromag-meanfreq()"
+"fbodybodygyrojerkmag-mean()"
+"fbodybodygyrojerkmag-std()"
+"fbodybodygyrojerkmag-meanfreq()"
+ 
