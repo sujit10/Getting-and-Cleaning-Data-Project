@@ -28,7 +28,7 @@ The following packages must be installed, prior to executing the script:
 
 Script
 ======
-The run_analysis.R script is available at the following github repo:
+The 'run_analysis.R' script is available in this github repo.
 
 Upon sourcing the script, it performs the following actions:
 - Merges the training and the test sets to create one data set.
